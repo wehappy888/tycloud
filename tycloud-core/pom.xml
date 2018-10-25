@@ -1,0 +1,31 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>tycloud</artifactId>
+        <groupId>org.tycloud</groupId>
+        <version>0.9.20-Ty</version>
+    </parent>
+
+    <groupId>org.tycloud</groupId>
+    <artifactId>tycloud-core</artifactId>
+    <packaging>pom</packaging>
+    <name>tycloud-core</name>
+    <url>http://tycloud.org</url>
+
+    <dependencies>
+
+
+
+    </dependencies>
+
+    <modules>
+        <module>tycloud-core-foundation</module>
+        <module>tycloud-core-restful</module>
+        <module>tycloud-core-rdbms</module>
+		<module>tycloud-core-auth</module>
+    </modules>
+
+
+
+</project>

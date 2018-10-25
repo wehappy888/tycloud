@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.tycloud</groupId>
+		<artifactId>tycloud-component</artifactId>
+		<version>0.9.20-Ty</version>
+	</parent>
+
+	<groupId>org.tycloud</groupId>
+	<artifactId>tycloud-component-cache</artifactId>
+	<packaging>jar</packaging>
+	<name>tycloud-component-cache</name>
+	<url>http://www.tycloud.org</url>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-redis</artifactId>
+			<version>1.4.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.tycloud</groupId>
+			<artifactId>tycloud-core-foundation</artifactId>
+			<version>0.9.20-Ty</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.tycloud</groupId>
+			<artifactId>tycloud-core-rdbms</artifactId>
+			<version>0.9.20-Ty</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.tycloud</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+
+	</dependencies>
+</project>

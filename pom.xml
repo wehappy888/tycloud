@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.tycloud</groupId>
+	<artifactId>tycloud</artifactId>
+	<version>0.9.20-Ty</version>
+	<packaging>pom</packaging>
+
+	<name>tycloud</name>
+	<description>tycloud</description>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+		<tycloud-version>0.9.20-Ty</tycloud-version>
+	</properties>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.2.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+
+	<dependencies>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-logging</artifactId>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Dalston.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+	<modules>
+		<module>tycloud-api</module>
+		<module>tycloud-server</module>
+		<module>tycloud-core</module>
+		<module>tycloud-component</module>
+		<module>tycloud-module</module>
+	</modules>
+
+
+
+	<!--<distributionManagement>-->
+		<!--<repository>-->
+			<!--<id>nexus-releases</id>-->
+			<!--<name>Nexus Release Repository</name>-->
+			<!--<url>http://repo.typroject.org:1011/repository/maven-releases/</url>-->
+		<!--</repository>-->
+		<!--<snapshotRepository>-->
+			<!--<id>nexus-snapshots</id>-->
+			<!--<name>Nexus Snapshot Repository</name>-->
+			<!--<url>http://repo.typroject.org:1011/repository/maven-snapshots/</url>-->
+		<!--</snapshotRepository>-->
+	<!--</distributionManagement>-->
+
+	<distributionManagement>
+		<repository>
+			<id>yplnexus-releases</id>
+			<name>Releases</name>
+			<url>http://192.168.0.22:8081/repository/maven-releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>yplnexus-snapshots</id>
+			<name>Snapshot</name>
+			<url>http://192.168.0.22:8081/repository/maven-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+
+</project>
