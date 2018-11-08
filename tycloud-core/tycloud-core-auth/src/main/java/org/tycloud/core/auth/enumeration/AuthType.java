@@ -23,6 +23,7 @@ package org.tycloud.core.auth.enumeration;
  */
 public enum AuthType implements ProvidedAuthType{
 	ID_PASSWORD("idPasswordAuthenticator"),
+	COOKIE("cookieWechatAuthenticator"),
 	WECHAT("wechatAuthenticator");
 
 

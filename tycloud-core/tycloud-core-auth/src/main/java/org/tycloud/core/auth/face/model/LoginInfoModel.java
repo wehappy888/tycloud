@@ -53,6 +53,8 @@ public class LoginInfoModel extends BaseModel {
 	private String openId;
 
 
+	private String cookie;
+
 	public String getIdType() {
 		return idType;
 	}
@@ -139,5 +141,13 @@ public class LoginInfoModel extends BaseModel {
 
 	public void setOpenId(String openId) {
 		this.openId = openId;
+	}
+
+	public String getCookie() {
+		return cookie;
+	}
+
+	public void setCookie(String cookie) {
+		this.cookie = cookie;
 	}
 }

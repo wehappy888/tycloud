@@ -9,11 +9,22 @@ public class AuthModel implements Serializable {
 
     private String loginId;
 
+    private String cookieKey;
+
     public String getLoginId() {
         return loginId;
     }
 
     public void setLoginId(String loginId) {
         this.loginId = loginId;
+    }
+
+
+    public String getCookieKey() {
+        return cookieKey;
+    }
+
+    public void setCookieKey(String cookieKey) {
+        this.cookieKey = cookieKey;
     }
 }

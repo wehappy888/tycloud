@@ -1,11 +1,13 @@
 package org.tycloud.core.auth.authentication;
 
+import com.baomidou.mybatisplus.toolkit.CollectionUtils;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 import org.tycloud.core.auth.enumeration.IdType;
 import org.tycloud.core.auth.enumeration.ProvidedAuthType;
 import org.tycloud.core.auth.exception.AuthException;
@@ -96,7 +98,10 @@ public   class Authenticator  {
             ssoSessionsModel.setOpenId(loginInfoModel.getOpenId());
            // ssoSessionsModel.setUserName(loginInfoModel.get);
             ssoSessionsModel.setUserType(userType.name());
-
+            if(!ObjectUtils.isEmpty(loginInfoModel.getCookie())){
+                ssoSessionsModel.setToken(loginInfoModel.getCookie().split(":")[1]);
+            }
+            ssoSessionsModel.setSessionId(loginInfoModel.getCookie());
         }
         //保存session和登陆记录
         return createLoginHistory(ssoSessionsModel);
@@ -112,6 +117,7 @@ public   class Authenticator  {
         result.put(ParamsConstants.EXPIRE, ssoSessionsModel.getSessionExpiration());
         result.put(ParamsConstants.USERID, ssoSessionsModel.getUserId());
         result.put(ParamsConstants.OPEN_ID,ssoSessionsModel.getOpenId());
+        result.put(ParamsConstants.SESSION_ID,ssoSessionsModel.getSessionId());
         return result;
     }
 

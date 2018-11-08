@@ -21,4 +21,6 @@ public class RestfulConstans {
     public static final String APPKEY = "appKey";
 
     public static final String TOKEN_TYPE = "tokenType";
+
+    public static final String SESSION_ID = "sessionId";
 }

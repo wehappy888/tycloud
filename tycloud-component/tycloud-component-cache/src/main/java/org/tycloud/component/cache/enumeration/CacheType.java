@@ -14,6 +14,7 @@ public enum CacheType {
     ERASABLE(1*60*60),
     MAPPER_CACHE(1*60*60),
     ENTITY_CACHE(2*60*60),
+    OPEN_ID_CACHE(24*60*60),
     MANUALLY_CACHE(2*60*60);
 
 

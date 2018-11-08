@@ -72,6 +72,8 @@ public class SsoSessionsModel extends BaseModel{
 
 	private String openId;
 
+	private String sessionId;
+
 	public String getToken() {
 		return token;
 	}
@@ -190,5 +192,13 @@ public class SsoSessionsModel extends BaseModel{
 
 	public void setOpenId(String openId) {
 		this.openId = openId;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 }

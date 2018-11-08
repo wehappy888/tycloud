@@ -2,6 +2,7 @@
 package org.tycloud.component.notification.face.service;
 
 import com.baomidou.mybatisplus.service.IService;
+import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -71,12 +72,11 @@ public class SmsVerifyService extends BaseService<SmsVerifyModel, SmsVerify, Sms
      * @throws Exception
      */
     public SmsVerifyModel sendVerifyCode(SmsTemplate smsTemplate) throws Exception {
-        //配置短信参数
-
-        smsTemplate.setParams(paramForVerifyCode(smsTemplate.getParams()));
         //組裝发送amp消息内容
         sendSmsToAmqp(smsTemplate);
-        return this.createSms(smsTemplate.getSmsType().getType(), smsTemplate.getMobile(), smsTemplate.getParams().get(smsTemplate.getParams().keySet().iterator().next()), smsTemplate.getTemplateId());
+
+        String paramsJson = new Gson().toJson(smsTemplate.getParams());
+        return this.createSms(smsTemplate.getSmsType().getType(), smsTemplate.getMobile(), paramsJson, smsTemplate.getTemplateId());
     }
 
 

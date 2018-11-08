@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.tycloud.core.auth.enumeration.IdType;
 import org.tycloud.core.auth.exception.AuthException;
+import org.tycloud.core.auth.exception.LoginException;
 import org.tycloud.core.auth.face.model.AuthModel;
 import org.tycloud.core.auth.face.model.IdPasswordAuthModel;
 import org.tycloud.core.auth.face.model.LoginInfoModel;
@@ -35,7 +36,7 @@ public class IdPasswordAuthenticator implements AuthenticatorHandler {
                 || ValidationUtil.isEmpty(userType)
                 || ValidationUtil.isEmpty(loginId)
                 || ValidationUtil.isEmpty(password)) {
-            throw new AuthException("登录信息不能为空.");
+            throw new AuthException("登录信息不能为空。");
         }
 
         //modify by river at 2018-10-24 , 修改登录用户通过 login 和 userType 来判断用户，方式

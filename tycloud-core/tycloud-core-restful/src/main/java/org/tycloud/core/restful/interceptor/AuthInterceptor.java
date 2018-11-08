@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.tycloud.core.auth.exception.AuthException;
@@ -26,6 +27,7 @@ import org.tycloud.core.restful.utils.APILevel;
 import org.tycloud.core.restful.utils.RequestUtil;
 import org.tycloud.core.restful.utils.RestfulConstans;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.SortedMap;
@@ -91,6 +93,18 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     String requestIp    = RequestUtil.getRemoteIp(request);
     String userAgent    = request.getHeader(RestfulConstans.USER_AGENT);
     String tokenType = request.getHeader(RestfulConstans.TOKEN_TYPE);
+    String sessionId = request.getHeader(RestfulConstans.SESSION_ID);
+
+    if(ObjectUtils.isEmpty(token) && ! ObjectUtils.isEmpty(request.getCookies())){
+        for (Cookie cookie : request.getCookies()) {
+            if(cookie.getName().equals(RestfulConstans.SESSION_ID)){
+                token = cookie.getValue();
+            }
+        }
+        if(!ObjectUtils.isEmpty(token)){
+            token = token.split(":")[1];
+        }
+    }
 
 
     //设置请求标识
@@ -110,6 +124,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     logInfo.append("\n* REQUEST_IP  :" + requestIp);
     logInfo.append("\n* USER_AGENT  :" + userAgent);
     logInfo.append("\n* TRACE_ID    :" + traceId);
+    logInfo.append("\n* SESSION_ID  :" + sessionId);
     logInfo.append("\n* HANDLER     :" + handlerMethod.getBean().getClass());
     logInfo.append("\n* METHOD      :" + handlerMethod.getMethod().getName());
     logInfo.append("\n* ACCESS_TIME :" + DateUtil.getNow(DateUtil.Y_M_D_HMS));
@@ -118,14 +133,14 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 
 
-    return doAuth(handlerMethod,token,appkey,product,tokenType);
+    return doAuth(handlerMethod,token,appkey,product,tokenType,sessionId);
 }
 
 
 
 
     private boolean doAuth(HandlerMethod handlerMethod,
-                           String token, String appKey, String product,String tokenType) throws Exception {
+                           String token, String appKey, String product,String tokenType,String sessionId) throws Exception {
 
         /**
          * 扩展的验证规则

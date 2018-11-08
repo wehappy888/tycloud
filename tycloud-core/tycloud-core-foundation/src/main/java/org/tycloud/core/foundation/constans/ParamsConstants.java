@@ -11,4 +11,6 @@ public class ParamsConstants {
     public static final String TOKEN = "token";
 
     public static final String OPEN_ID="openId";
+
+    public static final String SESSION_ID="SESSION_ID";
 }
